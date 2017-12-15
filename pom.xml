@@ -87,4 +87,18 @@
 		</plugins>
 
 	</build>
+
+	<repositories>
+		<repository>
+			<id>jboss.ea</id>
+			<name>JBoss Community Early Access Release Repository</name>
+			<url>http://origin-repository.jboss.org/nexus/content/groups/ea</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
