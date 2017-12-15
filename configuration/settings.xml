@@ -2,7 +2,7 @@
   <mirrors>
     <mirror>
       <id>s2i-mirror</id>
-      <url>http://origin-repository.jboss.org/nexus/content/groups/ea</url>
+      <url>http://maven.fuse.dos.fuse-qe.eng.rdu2.redhat.com/nexus/content/groups/public/</url>
       <mirrorOf>external:*</mirrorOf>
     </mirror>
   </mirrors>
