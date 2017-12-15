@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.redhat.xpaas</groupId>
+	<artifactId>parent-fis-sb</artifactId>
+	<packaging>pom</packaging>
+	<version>2.0.0-SNAPSHOT</version>
+
+	<name>xPaaS :: Fuse :: SpringBoot Parent</name>
+	<description>SpringBoot Parent for QE FIS test deployments</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.compiler.plugin>2.3.1</version.compiler.plugin>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.7</maven.compiler.source>
+
+		<mongodb.version>3.3.0</mongodb.version>
+		<pgjdbc-ng.version>0.6</pgjdbc-ng.version>
+		<!-- Spring Boot -->
+		<spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+		<spring-cloud.version>1.2.3.RELEASE</spring-cloud.version>
+		<spring-cloud-commons.version>1.1.1.RELEASE</spring-cloud-commons.version>
+		<!-- Spring Cloud Kubernetes -->
+		<!-- <spring-cloud-kubernetes-bom-with-platform-deps.version>0.1.5.fuse-000013</spring-cloud-kubernetes-bom-with-platform-deps.version>-->
+
+		<camel.version>2.21.0.fuse-000024</camel.version>
+		<fabric8.version>2.3.7.fuse-000011</fabric8.version>
+		<fabric8.maven.plugin.version>3.5.32.fuse-000016</fabric8.maven.plugin.version>
+		<version.maven-bundle-plugin>2.3.7</version.maven-bundle-plugin>
+		<version.maven-failsafe-plugin>2.18.1</version.maven-failsafe-plugin>
+		<kubernetes.client.version>2.6.3.fuse-000013</kubernetes.client.version>
+
+		<!-- Fuse versions -->
+		<cxf.version>3.1.11.fuse-000165</cxf.version>
+
+		<org.kie.version>6.4.0.Final-redhat-8</org.kie.version>
+		<io.undertow.version>1.3.21.Final-redhat-1</io.undertow.version>
+		<weld.version>2.3.5.Final</weld.version>
+		<deltaspike.version>1.5.4</deltaspike.version>
+
+		<!-- Narayana versions -->
+		<narayana.version>5.6.3.Final</narayana.version>
+		<jboss-transaction.version>7.6.0.Final</jboss-transaction.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.fabric8</groupId>
+				<artifactId>fabric8-project-bom-camel-spring-boot</artifactId>
+				<version>${fabric8.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!--
+						<dependency>
+							<groupId>org.apache.cxf</groupId>
+							<artifactId>cxf-rt-transports-http</artifactId>
+							<version>${cxf.version}</version>
+						</dependency>
+
+						<dependency>
+							<groupId>org.apache.cxf</groupId>
+							<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+							<version>${cxf.version}</version>
+						</dependency>
+			-->
+
+			<!-- TODO: we should not use jetty for CXF really -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http-jetty</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+
+			<!--
+						<dependency>
+								<groupId>org.apache.cxf</groupId>
+								<artifactId>cxf-parent</artifactId>
+								<version>${cxf.version}</version>
+								<type>pom</type>
+								<scope>import</scope>
+						</dependency>
+			-->
+
+			<!-- TODO: this is a very naughty BOM file, -->
+			<!--
+						<dependency>
+							<groupId>io.fabric8</groupId>
+							<artifactId>spring-cloud-kubernetes-bom-with-platform-deps</artifactId>
+							<version>${spring-cloud-kubernetes-bom-with-platform-deps.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
+			-->
+			<!--
+						<dependency>
+							<groupId>io.fabric8</groupId>
+							<artifactId>kubernetes-client-bom</artifactId>
+							<version>${kubernetes.client.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
+
+						<dependency>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-dependencies</artifactId>
+							<version>${spring-boot.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
+			-->
+			<!-- Spring Cloud dependencies -->
+			<!--
+						<dependency>
+							<groupId>org.springframework.cloud</groupId>
+							<artifactId>spring-cloud-core</artifactId>
+							<version>${spring-cloud.version}</version>
+						</dependency>
+
+						<dependency>
+							<groupId>org.springframework.cloud</groupId>
+							<artifactId>spring-cloud-commons</artifactId>
+							<version>${spring-cloud-commons.version}</version>
+						</dependency>
+			-->
+			<!--
+						<dependency>
+							<groupId>org.apache.camel</groupId>
+							<artifactId>camel-spring-boot-dependencies</artifactId>
+							<version>${camel.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
+			-->
+			<!--
+						<dependency>
+							<groupId>org.apache.camel</groupId>
+							<artifactId>camel-parent</artifactId>
+							<version>${camel.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
+			-->
+			<!--
+						<dependency>
+							<groupId>io.fabric8</groupId>
+							<artifactId>spring-cloud-kubernetes-core</artifactId>
+							<version>${spring-cloud-kubernetes-bom-with-platform-deps.version}</version>
+						</dependency>
+			-->
+
+			<!--MongoDB test-->
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongodb-driver</artifactId>
+				<version>${mongodb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongo-java-driver</artifactId>
+				<version>${mongodb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>bson</artifactId>
+				<version>${mongodb.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>xom</groupId>
+				<artifactId>xom</artifactId>
+				<version>1.2.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>9.1-901-1.jdbc4</version>
+			</dependency>
+
+			<!--PGEvent test-->
+			<dependency>
+				<groupId>com.impossibl.pgjdbc-ng</groupId>
+				<artifactId>pgjdbc-ng</artifactId>
+				<version>${pgjdbc-ng.version}</version>
+			</dependency>
+
+			<!--Camel JMS test-->
+			<dependency>
+				<groupId>org.apache.qpid</groupId>
+				<artifactId>qpid-amqp-1-0-client-jms</artifactId>
+				<version>0.32</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.qpid</groupId>
+				<artifactId>qpid-client</artifactId>
+				<version>0.32</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.weld.se</groupId>
+				<artifactId>weld-se</artifactId>
+				<version>${weld.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.weld</groupId>
+				<artifactId>weld-core</artifactId>
+				<version>${weld.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.deltaspike.cdictrl</groupId>
+				<artifactId>deltaspike-cdictrl-weld</artifactId>
+				<version>${deltaspike.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>${version.maven-bundle-plugin}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring-boot.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>io.fabric8</groupId>
+					<artifactId>fabric8-maven-plugin</artifactId>
+					<version>${fabric8.maven.plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>io.fabric8</groupId>
+					<artifactId>hawt-app-maven-plugin</artifactId>
+					<version>${fabric8.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>${version.maven-failsafe-plugin}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
